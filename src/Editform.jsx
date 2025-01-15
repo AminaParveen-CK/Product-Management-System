@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 const Editform = () => {
   const navigate=useNavigate()
-  const {products,setproducts,filteredproduct,setfilteredproduct,productId,setproductId}=useContext(samplecontext)
+  const {products,filteredproduct,productId}=useContext(samplecontext)
  
  const [editProductdata, seteditProductdata] = useState({
     id:filteredproduct?.id,

@@ -25,9 +25,9 @@
 import React, { useContext } from 'react'
 import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
-import { GrEdit, GrView } from "react-icons/gr";
+import { GrEdit } from "react-icons/gr";
 import { FaRegEye } from "react-icons/fa";
-import { RiDeleteBin5Fill, RiDeleteBinFill } from "react-icons/ri";
+import {  RiDeleteBinFill } from "react-icons/ri";
 import { Link, useNavigate } from 'react-router-dom';
 import { samplecontext } from './App';
 import Button from 'react-bootstrap/Button';
@@ -41,11 +41,9 @@ const ProductTable = () => {
   const navigates=useNavigate()
   const {products,setproducts,filteredproduct,setfilteredproduct,productId,setproductId}=useContext(samplecontext)
 
-// const [viewShow, setviewShow] = useState(false);
 const [show, setShow] = useState(false);
 const [deleteShow, setdeleteShow] = useState(false);
 const [searchitem, setsearchitem] = useState('');
-const [filtersearch, setfiltersearch] = useState('')
 const [searchfilter,setsearchfilter] = useState('')
 // ......view ......
 const viewhandleShow = (id) => {
@@ -56,13 +54,8 @@ const viewhandleShow = (id) => {
      setfilteredproduct(filter)
    }
 const viewhandleClose = () => setShow(false);
-// const filter=products?.filter((product)=>
-//   product.id===productId)[0]
-//  setfilteredproduct(filter)
-  // console.log(filteredproduct);
 
  // ........edit...........
-    const handleClose = () => setShow(false);
     const handleShow = (item) => {
    setproductId(item.id)
       setShow(true); }
@@ -88,12 +81,9 @@ const viewhandleClose = () => setShow(false);
     e.preventDefault()
 setsearchitem(e.target.value)
   }
-  // console.log(searchfilter);
   useEffect(() => {
     if(searchitem?.length===0){
-      setsearchfilter(products)
-      // console.log(searchfilter);
-      
+      setsearchfilter(products)  
     }
     else if(searchitem?.length>0){
       console.log(searchitem);
@@ -107,26 +97,6 @@ setsearchitem(e.target.value)
     }
   }, [products,searchitem])
   
-
-// if(e.target.value.length===0){ 
-//  console.log(products);
-//  setfiltersearch(products); //update setproducts with some condition satisfied for all products to display all 30 products
-//  console.log(products);
-//   console.log('no');
-//  }
-//  else{
-// const filteredsearch=products?.filter((product)=>product?.title.includes(searchitem))
-// setfiltersearch(filteredsearch)
-//  }
-  
- 
-  
-  // const submitSearch=(e)=>{
-  //   e.preventDefault()
-  //   // console.log(searchitem.length);
-  //  setproducts((prev)=> prev?.filter((product)=>product?.title.includes(searchitem)));
-  //  console.log(products);
-  //   }  
   return (
     <div className='whole-page'>
      <Form inline>
@@ -139,9 +109,6 @@ setsearchitem(e.target.value)
               name='search' 
               onChange={searching}
             />
-          </Col>
-          <Col xs="auto">
-            {/* <Button className='search-btn' type="submit" onClick={submitSearch}>Submit</Button> */}
           </Col>
         </Row>
       </Form>
@@ -186,17 +153,6 @@ setsearchitem(e.target.value)
           <p><strong>Brand :</strong> {filteredproduct?.brand}</p>
            <p><strong>Rating :</strong> {filteredproduct?.rating}</p>
            <p><strong>Stock :</strong> {filteredproduct?.stock}</p>
-           {/* <p><strong>Availability :</strong> {productDetails?.availabilityStatus}</p> */}
-           {/* <p><strong>Return Policy :</strong> {productDetails?.returnPolicy}</p> */}
-           {/* <p><strong>Minimum Order Quantity :</strong> {productDetails?.minimumOrderQuantity}</p> */}
-           {/* <p><strong>Shipping :</strong> {filteredproduct?.shippingInformation}</p> */}
-           {/* <p><strong>Warranty :</strong> {productDetails?.warrantyInformation}</p> */}
-           {/* <p><strong>Reviews :</strong> {productDetails?.reviews.map((i)=>{
-            return(<>
-           <p>comment : {i.comment}</p>
-           <p>rating: {i.rating}</p>
-           </>)
-          }) }</p> */}
           
         </Modal.Body>
         <Modal.Footer>
@@ -207,10 +163,8 @@ setsearchitem(e.target.value)
         </Modal.Footer>
       </Modal>
 
-     
         <Link to={'/editform'} > 
          <Button className='edit-btn' onClick= {()=>handleShow(item)} variant="primary"> <GrEdit color='black'/></Button>
-         
          </Link>
          
           <Button className='delete-btn' onClick={()=>deletehandleShow(item.id)} variant="danger m-2"><RiDeleteBinFill color='black'/></Button>
