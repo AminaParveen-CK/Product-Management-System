@@ -28,7 +28,7 @@ const Editform = () => {
     
     const indexval=products?.indexOf(filter);
     const editedproducts=products?.splice(indexval,1,{...editProductdata});
-    console.log(products);
+    console.log(editedproducts);
     toast.success('Edited Successfully!');
     navigate('/')
   }

@@ -9,12 +9,11 @@
 //       create a variable Allproducts and set it with an array spreading elements of products which has values got by the api integration and add the ProductData to theend of Allproducts. Now Allproducts has the array with the newly added product. In the table page we are mapping to the table from the products. therefore we have to update the products with the Allproducts so that the added product get updated in the table.
 // here e.target.reset() is used to refresh the form after submission
 
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { samplecontext } from './App';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const ProductForm = () => {
   const navigate=useNavigate()
