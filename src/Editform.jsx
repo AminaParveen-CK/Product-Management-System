@@ -35,8 +35,8 @@ const Editform = () => {
 
   return (
     <div className='edit-form-page' >
-      <h1 className='w-50 m-auto text-center p-5'>Edit Product</h1>
-     <Form className='p-5' style={{width:'40%',margin:'auto',border:'2px solid skyblue',borderRadius:'3%',backgroundColor:' rgb(239, 246, 248)'}} onSubmit={submitdata}>
+      <h1 className='m-auto text-center p-5'>Edit Product</h1>
+     <Form className='edit-form' onSubmit={submitdata}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Product Id</Form.Label>
         <Form.Control type="number"  placeholder="Enter Product Id" name='id' onChange={getEditdata}  defaultValue={filteredproduct?.id} />
@@ -53,16 +53,9 @@ const Editform = () => {
         <Form.Label>Price</Form.Label>
         <Form.Control type="number" placeholder="Enter Price" name='price' onChange={getEditdata} defaultValue={filteredproduct?.price}/>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Stock</Form.Label>
-        <Form.Control type="number" placeholder="Enter Stock" name='stock' onChange={getEditdata} defaultValue={filteredproduct?.stock}/>
-      </Form.Group>
-     
-      
-      <Button  variant="primary" type="submit">
-        Submit
-      </Button>
-      
+      <div className="text-center">
+      <Button  variant="primary" type="submit">Submit</Button>
+      </div>
     </Form>
     </div>
   )

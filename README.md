@@ -68,3 +68,39 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+// ...............Table-page-notes..................
+// This is the homepage of the project where the table of products is diplayed. 
+// here products is the usestate which is updated with the values taken from api in the app.jsx page. 
+// we display the products in the table by mapping inside the table body. 
+// In the table we add an extra column with the View,edit and delete buttons for each row in the table. 
+// Also we add a button create product below the table to add new products to the table.and link the button to the form page. The form page has the whole logic to add the new product to the table.
+
+
+// Since we have to use the filtered product based on the one we clicked in both the view and edit in the editform page we create the usestates productId and filteredproduct in the parent page App.jsx and pass it to this page using useContext.
+
+// ...............view button..................
+// The whole logic of view button is in this page.
+// 1 First create a button with view icon from react icons. 
+// 2 Copy paste code of modal component from react bootstrap which also include a usestate show and 2 functions handleClose and handleShow. 
+// 3 In the onclick of the button set the function handleshow by passing item.id as a callback so that we can filter the product with the passed id from the products object.
+// 4 Inside the handleshow since we passed id as callback we recieve the id in the arguement of the function and we can update the productId with the passed id.
+// 5 We apply filter method to the products object by comparing each product's id with the id we passed as productId to find the product we selected to view and assign it to a variable filter.
+// here since products is an array and the filter method returns an array with the filtered product, we have to use [0] to access the only first element of the filter array.
+// 6 set the filteredproduct usestate as filter because we need the filteredproduct also in the edit page.
+// 7 since filteredproduct is an object we dont need mapping and all we can access values from filteredproduct using dot opeerator. 
+// 8 in the modal body, add the fields to display in the view of products with values as filteredproduct.value in the products api. 
+// here the ? is used to make sure the code after that works only after fetching data to the filteredproduct.
+// Also images in api are given as arrays so while using them use images[0]
+
+// ...............edit-page-notes..................
+// This form is for adding a new product to the table products. here usenavigate hook is used to navigate to the home page when the form is submitted. 
+// ProductData is a usestate variable to store the values submitted from the form as an object.
+// Set a unique name for each form control and set a same functionname getinputdata in the onchange of each form control.
+// Inside the getinputdata update the ProductData using spread operator with the datas entered in the form by formdata getting method.
+// In the form tag set a function submitdata in the onsubmit. 
+// Inside submit data :
+//    e.preventDefault is used to avoid the automatic refreshing property.
+//       create a variable Allproducts and set it with an array spreading elements of products which has values got by the api integration and add the ProductData to theend of Allproducts. Now Allproducts has the array with the newly added product. In the table page we are mapping to the table from the products. therefore we have to update the products with the Allproducts so that the added product get updated in the table.
+// here e.target.reset() is used to refresh the form after submission
